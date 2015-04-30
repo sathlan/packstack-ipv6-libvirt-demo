@@ -1,0 +1,38 @@
+* Basic Packstack environment
+
+This =Vagrantfile= is suitable to test Packstack deployment of
+Openstack Kilo on two nodes:
+ - one controller;
+ - one compute.
+
+** Requirements
+
+   The requirements are:
+   - =bundler <1.8.0 >1.3=
+   - =libvirtd= with =kvm/qemu= backend
+
+** Installation
+
+   #+begin_src shell
+     gem install bundle -v '<1.8.0'
+     bundle install
+     bundle exec vagrant up
+
+   #+end_src
+
+   If you have nested KVM activated, then it automatically takes
+   advantage of it.
+
+** Helpers
+
+   There is a very simple script, =provisioner.sh= which:
+   1. install the repositories for a working CentOS7 Packstack
+      installation
+   2. add the IP to the new interfaces.
+   
+   If no IPv4 traffic, is going to and from some interface check those
+   =sysctl= on the hypervisor.  They are all displayed after the
+   =vagrant up= run.  One nasty one is
+   =/proc/sys/net/bridge/bridge-nf-call-ip6tables= which can block
+   IPv6 traffic.  Check the message at the end of the run.
+

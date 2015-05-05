@@ -2,9 +2,6 @@ install_repo()
 {
     yum install -y http://rdoproject.org/repos/openstack-kilo/rdo-release-kilo.rpm
     sudo curl -o /etc/yum.repos.d/delorean.repo http://trunk.rdoproject.org/kilo/centos7/current/delorean-kilo.repo
-
-#    curl -o /etc/yum.repos.d/delorean.repo  http://trunk.rdoproject.org/centos70/current/delorean.repo
-#    yum install -y https://repos.fedorapeople.org/repos/openstack/openstack-kilo/rdo-release-kilo-0.noarch.rpm
     yum update -y
 }
 

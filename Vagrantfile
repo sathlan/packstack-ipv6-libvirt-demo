@@ -21,7 +21,7 @@ def add_network(node, net)
   )
 end
 
-def netsted_enabled?
+def nested_enabled?
   IO.read('/sys/module/kvm_intel/parameters/nested').chomp == 'Y'
 end
 
@@ -44,7 +44,7 @@ Vagrant.configure('2') do |config|
     node.vm.box = 'sofer/centos-70-base'
     node.vm.hostname = 'controller.vagrantup.com'
     node.vm.synced_folder '.', '/vagrant', disabled: true
-    node.vm.provision "shell", path: "provision.sh", args: 'controller'
+    node.vm.provision 'shell', path: 'provision.sh', args: 'controller'
     add_network(node, 'mgmt')
     add_network(node, 'tunnel')
     add_network(node, 'public')
@@ -58,7 +58,7 @@ Vagrant.configure('2') do |config|
     node.vm.box = 'sofer/centos-70-base'
     node.vm.hostname = 'compute01.vagrantup.com'
     node.vm.synced_folder '.', '/vagrant', disabled: true
-    node.vm.provision "shell", path: "provision.sh", args: 'compute'
+    node.vm.provision 'shell', path: 'provision.sh', args: 'compute'
     node.vm.provider 'libvirt' do |lv|
       lv.memory = 1024
     end
